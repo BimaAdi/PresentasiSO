@@ -19,10 +19,10 @@ class Lingkaran extends Thread
 	private Thread t;
     private String threadName;
    
-	public Lingkaran(Group group, String name)
+	public Lingkaran(Group group, String name, float x, float y)
 	{
 		setRadius(10);
-		setPosition(0, 0);
+		setPosition(x, y);
 		setVelocityX(2);
 		setVelocityY(2);
 		circle.setFill(Color.BLUE);
@@ -85,8 +85,8 @@ class Lingkaran extends Thread
 	         {
 	            /*System.out.println("Thread: " + threadName + ", " + i);*/
 	            // Let the thread sleep for a while.
-	            this.setPosition(this.getX() + this.getVelocityX(), this.getY() + this.getVelocityY());
-	            Thread.sleep(1000);
+	            this.setPosition(this.getX() + this.getVelocityX(), this.getY());
+	            Thread.sleep(400);
 	         }
 	      }catch (InterruptedException e) 
 	      {
@@ -116,8 +116,11 @@ public class So extends Application
 	{
 		Group root = new Group();
 		Scene scene = new Scene(root, 400, 300);
-		Lingkaran lingkaran1 = new Lingkaran(root, "l1");
+		Lingkaran lingkaran1 = new Lingkaran(root, "l1", 20, 20);
 		lingkaran1.start();
+
+		Lingkaran lingkaran2 = new Lingkaran(root, "l1", 20, 40);
+		lingkaran2.start();
 
 		stage.setScene(scene);
 		stage.show();
